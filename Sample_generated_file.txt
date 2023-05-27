@@ -1,0 +1,110 @@
+Start
+
+
+
+Title: Account Identifiers | Snowflake Documentation
+
+Note
+Account locators continue to be supported for identifying accounts in Snowflake, but this is no longer the preferred method. The
+preferred method for identifying accounts is now the account name within your organization (as described earlier in this topic).
+
+Note
+If your Snowflake Edition is VPS, the account locator uses a different format. See
+Finding the Account Locator Format for a VPS Account (in this topic).
+
+END Of File
+
+
+Title: Trial Accounts | Snowflake Documentation
+
+Note
+Adding a credit card to a trial account converts it to a paid account; however, this does not end your trial:
+
+Your free credits are unaffected. During the trial period, you can continue using your free credits until they are fully consumed,
+after which all additional credit consumption will be charged. Unused free credits expire when the trial period ends.
+Your data storage will not be charged until the trial ends, after which you will be charged a monthly storage usage fee based on the
+amount of data you maintain in your account.
+
+All future costs (for consuming credits and storing data) will be charged to the credit card on file at the end of each billing cycle (typically
+monthly).
+For pricing details, see the pricing page (on the Snowflake website).
+
+Note
+Currently, trial accounts cannot be canceled through the web interface. To cancel an account, you must contact Snowflake Support.
+
+Tip
+To prevent unintentional usage of your free credits:
+
+Verify the size of your virtual warehouses before you start/resume them. The larger the warehouse, the more credits it consumes while running.
+In many situations, Small or Medium size warehouses are sufficient for evaluating Snowflake’s loading and querying capabilities.
+Ensure your virtual warehouses are set to auto-suspend when they are not in use, and, if appropriate, set auto-suspend to a short time period
+(e.g. 5 minutes or less).
+
+END Of File
+
+
+Title: Parameter Management | Snowflake Documentation
+
+END Of File
+
+
+Title: User Management | Snowflake Documentation
+
+Note
+Each password policy parameter requires an ALTER USER statement to set the MUST_CHANGE_PASSWORD
+property to TRUE to require the user to update their password to comply with the password policy parameter value during the
+next login to Snowflake.
+However, the following parameters are exceptions:
+
+PASSWORD_MAX_AGE_DAYS = integer
+PASSWORD_MAX_AGE_DAYS = integer
+PASSWORD_LOCKOUT_TIME_MINS = integer
+
+These parameters are stateful. A stateful parameter means the parameter value becomes effective once the command finishes executing. It
+is not necessary to run an ALTER USER … SET MUST_CHANGE_PASSWORD command if your CREATE PASSWORD POLICY or
+ALTER PASSWORD POLICY statement only contains one or more stateful parameters.
+Note that changing a stateful parameter value with an ALTER PASSWORD POLICY command does not affect the current session. For
+example, if you change the value of the PASSWORD_MAX_AGE_DAYS parameter to a number that causes the user’s current password to
+expire, upon the next login to Snowflake the user will change their password. Snowflake will not force the user to change their
+password in their current session.
+
+Note
+To set a policy on an account, the policy_admin custom role must also have the USAGE privilege on the database and schema that
+contain the password policy.
+For more information, see: Access Control Privileges
+
+Note
+The property PASSWORD_MAX_AGE_DAYS is set to the largest value, 999. Choose a value that aligns with your internal
+guidelines. For details, see CREATE PASSWORD POLICY.
+
+Note
+The web interface requires that you specify a password when you create a user; the CREATE USER command does not.
+For more information about passwords in Snowflake, see Password Policies (in this topic)
+
+Note
+User name is the unique identifier for the user in Snowflake. It is not the user’s login name (i.e. the name the user enters when logging into Snowflake). Snowflake allows users to have different user names and login names, if desired. You specify a login name for the user on the next screen.
+
+Note
+Users require a login name to log into Snowflake; if you don’t explicitly provide a login name, Snowflake uses their user name as the login name.
+
+Note
+Users can only change their own password through the web interface. For more information, see Changing Your Password / Switching Your (Session) Role / Logging Out.
+
+Note
+
+The generated URL is valid for one use only and expires after 4 hours.
+Executing the ALTER USER … RESET PASSWORD statement does not invalidate the current password. The user can continue to use the old password until the new password is set.
+
+Tip
+If a single role has the OWNERSHIP privilege on all Snowflake users, we recommend granting the role to multiple users. That way, if a member of the role is locked out, another member can unlock that user.
+
+END Of File
+
+
+Title: Behavior Change Management | Snowflake Documentation
+
+Note
+Behavior changes in bundles cannot be enabled/disabled individually. To enable/disable a behavior change, you must enable/disable the
+bundle containing the change.
+
+END Of File
